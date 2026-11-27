@@ -8,7 +8,7 @@ DUUR = 20.0; N = int(DUUR * FPS)
 SPEL = json.load(open(HIER + "spel.json"))
 
 # ---------- tijdlijn ----------
-T_START, T_A, T_B, T_C, T_G, T_K, T_P, T_B2, T_C2, T_GR, T_PO, T_E = 0, 1.8, 3.8, 4.8, 5.5, 8.5, 10.5, 12.3, 13.2, 13.8, 16.2, 17.6
+T_START, T_A, T_B, T_C, T_G, T_K, T_P, T_B2, T_C2, T_GR, T_PO, T_E = 0, 2.2, 4.2, 5.2, 5.9, 8.9, 10.9, 12.7, 13.6, 14.2, 16.6, 18.0
 
 # ---------- het huis in een grote scène ----------
 huis = Image.open(HIER + "huis.png").convert("RGBA")
@@ -190,7 +190,6 @@ for f in range(N):
         img = Image.blend(cover(POLA[-1], W, H).convert("RGBA"), EIND_, a) if a < 1 else EIND_.copy()
         sneeuw(img, t, .5)
     out = img.convert("RGB")
-    if f < 8: out = Image.blend(Image.new("RGB", (W, H), (20, 10, 6)), out, f / 8)
     if f > N - 12: out = Image.blend(Image.new("RGB", (W, H), (20, 10, 6)), out, (N - f) / 12)
     out.save(f"{map_}/{f:04d}.jpg", quality=92)
     if f % 48 == 0: print("frame", f, round(t, 1), flush=True)
